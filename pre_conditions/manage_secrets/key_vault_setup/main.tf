@@ -14,8 +14,8 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "BIDEVELOP"
-    storage_account_name = "advtfbackenddev"
+    resource_group_name  = "David_Terraform_Backend"
+    storage_account_name = "kuda42terraform"
     container_name       = "terraform-remote-state"
     key                  = "secrets.tfstate"
   }
@@ -23,16 +23,14 @@ terraform {
 
 provider "azurerm" {
   features {}
-  skip_provider_registration = true
 }
 
 provider "azuread" {
   features {}
-  skip_provider_registration = true
 }
 
-module "key_vault_setup" {
-  source              = "..\/modules\/key_vault_setup"
-  resource_group_name = "BIDEVELOP"
-  env_tag             = "dev"
+data "azurerm_resource_group" "root" {
+  name = var.resource_group_name
 }
+
+data "azurerm_client_config" "self" {}
