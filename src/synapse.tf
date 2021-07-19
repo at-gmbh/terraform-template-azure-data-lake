@@ -8,7 +8,7 @@ resource "azurerm_synapse_workspace" "self" {
 }
 
 resource "azurerm_synapse_sql_pool" "self" {
-  name                 = "advantest_bi"
+  name                 = "main-sql-pool"
   synapse_workspace_id = azurerm_synapse_workspace.self.id
   sku_name             = "DW100c"
   create_mode          = "Default"
