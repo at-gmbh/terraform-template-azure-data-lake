@@ -4,7 +4,7 @@ resource "azurerm_synapse_workspace" "self" {
   location                             = azurerm_resource_group.root.location
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.synapse.id
   sql_administrator_login              = "sqladminuser"
-  sql_administrator_login_password     = "tbd"
+  sql_administrator_login_password     = "Qx$9ODyU{CRVszqdQl1p*8-az_bNh=5^}[d$0Cy.~o"
 }
 
 resource "azurerm_synapse_sql_pool" "self" {
