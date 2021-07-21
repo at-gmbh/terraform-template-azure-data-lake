@@ -101,8 +101,6 @@ There are generally two ways how you can manage different environments. In our c
 1. workspaces (e.g. `terraform workspace new dev`)
 2. directory-based
 
-We have chosen the later option, which means that we do not use workspaces. 
-
 Here is a great explanation of both approaches: [HashiCorp Learn: Separate Development and Production Environments](https://learn.hashicorp.com/tutorials/terraform/organize-configuration?in=terraform/modules)
 
 ### Important notes
