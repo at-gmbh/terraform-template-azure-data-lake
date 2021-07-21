@@ -1,5 +1,5 @@
 resource "azurerm_synapse_workspace" "self" {
-  name                                 = "synapse-${local.environment}"
+  name                                 = "kuda42-synapse-${local.environment}"
   resource_group_name                  = azurerm_resource_group.root.name
   location                             = azurerm_resource_group.root.location
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.synapse.id
