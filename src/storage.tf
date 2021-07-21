@@ -26,6 +26,14 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "landing" {
     permissions = "rwx"
   }
 
+  # Set ACL for the Service Principal "ADLS Load"
+  ace {
+    scope       = "access"
+    type        = "user"
+    id          = azuread_service_principal.adls_load.id
+    permissions = "rwx"
+  }
+
   # Set ACL for the group "Alexander Thamm Engineers"
   ace {
     scope       = "access"
