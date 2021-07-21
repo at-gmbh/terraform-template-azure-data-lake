@@ -55,7 +55,7 @@ resource "databricks_secret" "adls_connect_client_secret" {
 resource "databricks_secret" "adls_connect_client_id" {
   scope        = databricks_secret_scope.self.name
   key          = "adls_connect_client_id"
-  string_value = azuread_service_principal.adls_connect.application_id
+  string_value = azuread_service_principal.adls_connect.id
 }
 
 resource "databricks_secret" "tenant_id" {
