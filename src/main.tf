@@ -41,7 +41,7 @@ provider "azuread" {
 # ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
 # Create the root Resource Group
 resource "azurerm_resource_group" "root" {
-  name = "Data_Lake_Distributed_ETL"
+  name     = "Data_Lake_Distributed_ETL"
   location = "Switzerland North"
 }
 
