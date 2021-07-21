@@ -1,3 +1,8 @@
+# Manage your Azure Active Directory settings here. 
+
+# These resources / settings are mainly used to either set ACL on 
+# the storage account or make role assignments.
+
 # ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
 # Create the service principal "ADLS Connect"
 # This service principal is used to connect Azure resources to the data lake.
