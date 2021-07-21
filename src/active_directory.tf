@@ -65,5 +65,5 @@ data "azuread_users" "users" {
 
 resource "azuread_group" "at_engineers" {
   display_name = "AT Engineers"
-  members = toset([for s in data.azuread_users.users.object_ids : s])
+  members      = toset([for s in data.azuread_users.users.object_ids : s])
 }
