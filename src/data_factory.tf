@@ -1,5 +1,5 @@
 resource "azurerm_data_factory" "self" {
-  name                = "data-factory-${local.environment}"
+  name                = "kuda42-data-factory-${local.environment}"
   resource_group_name = azurerm_resource_group.root.name
   location            = azurerm_resource_group.root.location
 }
