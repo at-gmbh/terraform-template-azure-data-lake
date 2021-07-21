@@ -42,8 +42,8 @@ resource "databricks_cluster" "shared_autoscaling" {
 }
 
 resource "databricks_secret_scope" "self" {
-    name                     = "adls"
-    initial_manage_principal = "users"
+  name                     = "adls"
+  initial_manage_principal = "users"
 }
 
 resource "databricks_secret" "adls_connect_client_secret" {
