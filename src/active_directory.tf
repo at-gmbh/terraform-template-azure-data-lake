@@ -44,12 +44,12 @@ resource "azuread_application" "adls_load" {
 
 resource "azuread_application_password" "adls_load" {
   # Create a client secret for ADLS Connect
-  application_object_id = azuread_application.adls_connect.object_id
+  application_object_id = azuread_application.adls_load.object_id
 }
 
 resource "azuread_service_principal" "adls_load" {
   # Use this resource to refer to the service principal
-  application_id               = azuread_application.adls_connect.application_id
+  application_id               = azuread_application.adls_load.application_id
   app_role_assignment_required = false
 }
 
