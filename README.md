@@ -1,9 +1,9 @@
-# Azure Infrastructure as Code with Terraform
+# Azure Spark Data Lake 
+### Infrastructure as Code with Terraform
+
+[A diagram of the infrastructure](documentation/diagrams/Azure_Spark_Data_lake.png)
 
 With this repository you create an infrastructure on Azure. You will create a data lake ([ADLS Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction)) to store data, a databricks environment to process data with Spark and a data factory to orchestrate etl jobs. 
-
-You can find the deployment of this infrastructure here: [Azure/mathiasthammalexanderthamm.onmicrosoft.com/Data_Lake_Distributed_ETL
-](https://portal.azure.com/#@mathiasthammalexanderthamm.onmicrosoft.com/resource/subscriptions/6b161a49-4d68-4bc9-a1ad-0884eb5e686d/resourceGroups/Data_Lake_Distributed_ETL/overview)
 
 ### Overview of the files and resources
 
