@@ -11,9 +11,8 @@ For every resource there is a separate file. Everything related to storage is, f
 
 - __main.tf:__ Set up all Terraform providers. Create a resource group that holds the whole infrastructure.
 - __active_directory.tf:__ Create [service principals](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) that can authenticate to the data lakes.
-- __storage.tf:__ Create a storage account for external suppliers. They can upload all files to that storage account. Create the main data lake for all ETL processes. Create the backend for Synapse.
+- __storage.tf:__ Create a storage account for external suppliers. They can upload all files to that storage account. Create the main data lake for all ETL processes.
 - __databricks.tf:__ Create the databricks workspace and two Spark clusters.
--__synapse.tf:__ Create a Synapse workspace. After you are done processing all files with Spark in databricks, you can then load the cleaned data to synapse. Synapse is based on SQL -- and offers an MPP (massively parallel processing) engine. By using Synapse you can onboard everyone in the team that knows SQL, but doesn't know Spark / Python. From there, you can create Data Marts. 
 - __data_factory.tf:__ Create an Azure Data Factory resource and connect all previous resources to it.
 - __locals.tf:__ Manage constant variables in this file. 
 
@@ -39,18 +38,13 @@ Let's make an example. Let's say that you have a password that you need to share
 
 # First, you call the Azure Key Vault resource.
 data "azurerm_key_vault" "self" {
-  name                = "advbi-key-vault-${var.env_tag}"
+  name                = "key-vault-${var.env_tag}"
   resource_group_name = data.azurerm_resource_group.root.name
 }
 
 # Then, you call individual secrets from that key vault.
 data "azurerm_key_vault_secret" "adls_connect_client_secret" {
   name         = "adls-connect-client-secret"
-  key_vault_id = data.azurerm_key_vault.self.id
-}
-
-data "azurerm_key_vault_secret" "synapse_sql_admin_pw" {
-  name         = "synapse-sql-administrator-login-password"
   key_vault_id = data.azurerm_key_vault.self.id
 }
 ```

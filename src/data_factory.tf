@@ -21,10 +21,3 @@ resource "azurerm_data_factory_linked_service_azure_databricks" "self" {
   access_token = databricks_token.data_factory.token_value
   adb_domain   = "https://${azurerm_databricks_workspace.self.workspace_url}"
 }
-
-resource "azurerm_data_factory_linked_service_synapse" "self" {
-  name                = "linked_service_synapse"
-  resource_group_name = azurerm_resource_group.root.name
-  data_factory_name   = azurerm_data_factory.self.name
-  connection_string   = "tbd"
-}

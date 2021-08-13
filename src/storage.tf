@@ -95,28 +95,3 @@ resource "azurerm_storage_data_lake_gen2_path" "databricks_config" {
   storage_account_id = azurerm_storage_account.adls.id
   resource           = "directory"
 }
-
-# ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
-# Create a file system for Synapse
-
-resource "azurerm_storage_data_lake_gen2_filesystem" "synapse" {
-  # Synapse requires it's own file system.
-  name               = "synapse-filesystem"
-  storage_account_id = azurerm_storage_account.adls.id
-
-  # Set ACL for the Service Principal "ADLS Connect"
-  ace {
-    scope       = "access"
-    type        = "user"
-    id          = azuread_service_principal.adls_connect.id
-    permissions = "rwx"
-  }
-
-  # Set ACL for the group "Alexander Thamm Engineers"
-  ace {
-    scope       = "access"
-    type        = "group"
-    id          = azuread_group.at_engineers.id
-    permissions = "rwx"
-  }
-}
