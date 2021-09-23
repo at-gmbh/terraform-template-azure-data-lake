@@ -18,37 +18,6 @@ For every resource there is a separate file. Everything related to storage is, f
 
 I did neither yet create the `variables.tf` file nor the `terraform.tfvars` file. You can of course create those files, too. 
 
-### Pre conditions
-
-Before you can use the code in src, you need to first create a remote backend. Optionally, you can also create a key vault separately. 
-
-#### Create a remote backend
-
-Please go to [/pre_conditions/create_remote_backend/](./pre_conditions/create_remote_backend/README.md) to first set up your remote backend. Terraform is based on a "state file". Everything you set up is going to be stored in that state file. If you are more than just one developer working on the infrastructure, you need to share that very state file. The sharing is happening in the "remote backend". If you follow the instructions, you will create a discrete resource group just to create a storage account with a container where you will eventually store your state file. 
-
-#### Managing secrets in a key vault
-
-If you plan on using secrets such as passwords it is advisable to use the [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/). You can find the instructions in [/pre_conditions/manage_secrets/](./pre_conditions/manage_secrets/README.md). You can create the secrets with a separate state file. That way you do not need to take care of managing secrets in the main terraform files inside `/src/`. That way you never need to worry about checking in secrets to version control, for instance. Instead, you can call every secret with a "terraform data object".
-
-Let's make an example. Let's say that you have a password that you need to share with all the engineers. You first create a secret in Azure Key Vault. After that, you can use that secret in Terraform with the following object. That way you never need to hardcode the secret in your code. Neither will you ever need to manage environment variables. You can simply call all secrets from the Azure Key Vault. 
-
-```hcl
-# Once you have created the key vault from the outside of this code, you can
-# Access all the secrets from within this code. 
-
-# First, you call the Azure Key Vault resource.
-data "azurerm_key_vault" "self" {
-  name                = "key-vault-${var.env_tag}"
-  resource_group_name = data.azurerm_resource_group.root.name
-}
-
-# Then, you call individual secrets from that key vault.
-data "azurerm_key_vault_secret" "adls_connect_client_secret" {
-  name         = "adls-connect-client-secret"
-  key_vault_id = data.azurerm_key_vault.self.id
-}
-```
-
 ### How to Build the Infrastructure
 
 Make sure that you have the [azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and the [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) installed. Check if you have both installed:
@@ -85,15 +54,16 @@ terraform plan
 terraform apply
 ```
 
-### Remote State
+### Create a remote backend
 
-When working with terraform, it's very important to understand the concept of "state files". Terraform saves the state of the infrastructure in a state file that is usually called `terraform.tfstate`. Since multiple people work on the same infrastructure, we need to make sure that every developer has access to the very same state file. Otherwise we would have drift: The actual infrastructure would be different to what is described in the state file. Thus, we install a "remote state" by simply storing the state file in the cloud. 
+Before you use the code in src, we advise you to first create a [remote backend](https://www.terraform.io/docs/language/settings/backends/remote.html).  
 
-Inside these storage accounts you will find the container `terraform-remote-state`. And inside that container, you will find the file `terraform.tfstate`. 
+Please go to [/pre_conditions/create_remote_backend/](./pre_conditions/create_remote_backend/README.md) to first set up your remote backend. Terraform is based on a "state file". Terraform will store all the resources it creates on your cloud inside the state file. This state file is usually named `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
+
 
 ### How to manage different environments
 
-There are generally two ways how you can manage different environments. In our case, we have three distinct environments: dev, test, prod. They are identical, though. The two ways to manage envs are:
+There are generally two ways how you can manage different environments. The two ways to manage envs are:
 
 1. workspaces (e.g. `terraform workspace new dev`)
 2. directory-based
