@@ -58,22 +58,17 @@ terraform apply
 
 Before you use the code in src, we advise you to first create a [remote backend](https://www.terraform.io/docs/language/settings/backends/remote.html).  
 
-Please go to [/extras/create_remote_backend/](./extras/create_remote_backend/) to first set up your remote backend. Terraform is based on a "state file". Terraform will store all the resources it creates on your cloud inside the state file. This state file is usually named `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
+Please go to [./extras/create_remote_backend/](./extras/create_remote_backend/) to first set up your remote backend. Terraform is based on a ["state file"](https://www.terraform.io/docs/language/state/index.html). Terraform will store all the resources it creates on your cloud inside the state file. That state file is usually called `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
 
 
 ### How to manage different environments
 
-There are generally two ways how you can manage different environments. The two ways to manage envs are:
+There are generally two ways how you can manage different environments (e.g. dev, int, prod). The two ways to manage envs are:
 
 1. workspaces (e.g. `terraform workspace new dev`)
 2. directory-based
 
 Here is a great explanation of both approaches: [HashiCorp Learn: Separate Development and Production Environments](https://learn.hashicorp.com/tutorials/terraform/organize-configuration?in=terraform/modules)
-
-### Important notes
-
-- Never change infrastructure on the GUI / manually, but always use terraform. Otherwise, you will have drift which means that the actual environment looks different to what terraform expects.
-- Only use terraform commands inside the environment directory.
 
 ### Questions
 
