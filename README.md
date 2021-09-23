@@ -58,7 +58,7 @@ terraform apply
 
 Before you use the code in src, we advise you to first create a [remote backend](https://www.terraform.io/docs/language/settings/backends/remote.html).  
 
-Please go to [/pre_conditions/create_remote_backend/](./pre_conditions/create_remote_backend/README.md) to first set up your remote backend. Terraform is based on a "state file". Terraform will store all the resources it creates on your cloud inside the state file. This state file is usually named `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
+Please go to [/pre_conditions/create_remote_backend/](./pre_conditions/create_remote_backend/) to first set up your remote backend. Terraform is based on a "state file". Terraform will store all the resources it creates on your cloud inside the state file. This state file is usually named `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
 
 
 ### How to manage different environments
