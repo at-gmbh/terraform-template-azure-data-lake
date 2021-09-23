@@ -20,8 +20,9 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "David_Terraform_Backend"
-    storage_account_name = "kuda42terraform"
+    # As defined in ../pre_conditions/create_remote_backend/main.tf
+    resource_group_name  = "Terraform_Backend"
+    storage_account_name = "uniquelowercasename42"
     container_name       = "terraform-remote-state"
     key                  = "terraform.tfstate"
   }
