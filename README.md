@@ -1,4 +1,7 @@
 # Azure Spark Data Lake 
+
+[![License](https://img.shields.io/github/license/at-gmbh/at-python-template)](https://github.com/at-gmbh/at-python-template/blob/master/LICENSE)
+
 ### Infrastructure as Code with Terraform
 
 ![A diagram of the infrastructure](documentation/diagrams/Azure_Spark_Data_lake.png)
@@ -16,7 +19,7 @@ For every resource there is a separate file. Everything related to storage is, f
 - __data_factory.tf:__ Create an Azure Data Factory resource and connect all previous resources to it.
 - __locals.tf:__ Manage constant variables in this file. 
 
-I did neither yet create the `variables.tf` file nor the `terraform.tfvars` file. You can of course create those files, too. 
+Optionally, you could add the two files `variables.tf` file nor the `terraform.tfvars` if you need them. 
 
 ### How to Build the Infrastructure
 
@@ -63,13 +66,31 @@ Please go to [./extras/create_remote_backend/](./extras/create_remote_backend/) 
 
 ### How to manage different environments
 
-There are generally two ways how you can manage different environments (e.g. dev, int, prod). The two ways to manage envs are:
+There are generally two ways how you can manage different environments (e.g. dev, int, prod):
 
 1. workspaces (e.g. `terraform workspace new dev`)
 2. directory-based
 
 Here is a great explanation of both approaches: [HashiCorp Learn: Separate Development and Production Environments](https://learn.hashicorp.com/tutorials/terraform/organize-configuration?in=terraform/modules)
 
-### Questions
 
-If you have questions, feel free to contact David Kuda, david.kuda@alexanderthamm.com. 
+### Contact
+
+* Sebastian Straub (sebastian.straub [at] alexanderthamm.com)
+* David Kuda (david.kuda [at] alexanderthamm.com)
+
+### License
+
+    Copyright 2021 Alexander Thamm GmbH
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
