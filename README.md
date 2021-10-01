@@ -2,11 +2,11 @@
 
 [![License](https://img.shields.io/github/license/at-gmbh/at-python-template)](https://github.com/at-gmbh/at-python-template/blob/master/LICENSE)
 
+With this terraform template you define infrastructure on Azure. You will create a data lake ([ADLS Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction)) to store data, a databricks environment to process data with Spark and a data factory to orchestrate ETL jobs. 
+
 ### Infrastructure as Code with Terraform
 
 ![A diagram of the infrastructure](documentation/diagrams/Azure_Spark_Data_lake.png)
-
-With this repository you create an infrastructure on Azure. You will create a data lake ([ADLS Gen2](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction)) to store data, a databricks environment to process data with Spark and a data factory to orchestrate etl jobs. 
 
 ### Overview of the files and resources
 
@@ -63,7 +63,6 @@ Before you use the code in src, we advise you to first create a [remote backend]
 
 Please go to [./extras/create_remote_backend/](./extras/create_remote_backend/) to first set up your remote backend. Terraform is based on a ["state file"](https://www.terraform.io/docs/language/state/index.html). Terraform will store all the resources it creates on your cloud inside the state file. That state file is usually called `terraform.tfstate`. If you are more than one developer working on the infrastructure, you need to share that state file with your fellow developers. The sharing is happening in the "remote backend", which is simply a cloud storage that hosts the `terraform.tfstate` file. If you follow the instructions, you will create a separate resource group just to create a storage account with a container where you will eventually store your state file. 
 
-
 ### How to manage different environments
 
 There are generally two ways how you can manage different environments (e.g. dev, int, prod):
@@ -73,11 +72,10 @@ There are generally two ways how you can manage different environments (e.g. dev
 
 Here is a great explanation of both approaches: [HashiCorp Learn: Separate Development and Production Environments](https://learn.hashicorp.com/tutorials/terraform/organize-configuration?in=terraform/modules)
 
-
 ### Contact
 
-* Sebastian Straub (sebastian.straub [at] alexanderthamm.com)
 * David Kuda (david.kuda [at] alexanderthamm.com)
+* Sebastian Straub (sebastian.straub [at] alexanderthamm.com)
 
 ### License
 
